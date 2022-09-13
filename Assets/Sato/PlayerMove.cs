@@ -9,18 +9,21 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     Rigidbody2D _rb;
+    PlayerInputEvent _pie;
     /// <summary>プレイヤーの移動速度の倍率</summary>
     [SerializeField] float _speedMag;
-    /// <summary>入力で制御するアニメーター</summary>
-    [SerializeField] Animator _spriteAnim;
-    /// <summary>入力されたベクトル</summary>
+    /// <summary>プレイヤーの画像のアニメーター</summary>
+    Animator _spriteAnim;
+    /// <summary>入力された移動ベクトル</summary>
     Vector3 _velocity;
-    /// <summary>前のフレームの移動</summary>
+    /// <summary>前フレームの移動ベクトル</summary>
     Vector3 _prevVelo;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _pie = GetComponent<PlayerInputEvent>();
+        _spriteAnim = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -40,20 +43,25 @@ public class PlayerMove : MonoBehaviour
             if (hori == -1)
             {
                 _spriteAnim.Play("Left");
+                _pie.RayDir = -transform.right;
             }
             else if (hori == 1)
             {
                 _spriteAnim.Play("Right");
+                _pie.RayDir = transform.right;
             }
             else if (vert == 1)
             {
                 _spriteAnim.Play("Up");
+                _pie.RayDir = transform.up;
             }
             else if (vert == -1)
             {
                 _spriteAnim.Play("Down");
+                _pie.RayDir = -transform.up;
             }
         }
+
         _prevVelo = _velocity;
     }
 
