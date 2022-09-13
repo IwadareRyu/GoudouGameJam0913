@@ -9,27 +9,36 @@ public class EnemyControllerUD : MonoBehaviour
     [SerializeField] float _stopDis = 0.05f;
     int _targetIndex = 0;
     [SerializeField] Vector3 dir;
-    bool _isplayer;
-    private GameObject _player;
+    GameObject _warpMazzle;
+    [SerializeField] bool _change;
+    bool _changeTime;
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_isplayer)
+        if (!_change)
         {
             Patrol();
+            Flip(dir.x);
         }
-        if (_isplayer)
+        else
         {
-            dir = (_player.transform.position - transform.position).normalized * _speed;
-            transform.Translate(dir * Time.deltaTime);
+            if (!_changeTime)
+            {
+                StartCoroutine(ChangeTime());
+                _changeTime = true;
+            }
         }
-        Flip(dir.y);
+    }
+    IEnumerator ChangeTime()
+    {
+        yield return new WaitForSeconds(3f);
+        transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
+        _changeTime = false;
     }
 
     void Patrol()
@@ -63,14 +72,8 @@ public class EnemyControllerUD : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            _isplayer = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            _isplayer = false;
+            _warpMazzle = GameObject.FindGameObjectWithTag("Warp");
+            collision.transform.position = _warpMazzle.transform.position;
         }
     }
 }
