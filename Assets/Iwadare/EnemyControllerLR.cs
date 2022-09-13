@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyControllerLR : MonoBehaviour
 {
     [SerializeField] Transform[] _targets;
     [SerializeField] float _speed = 3f;
@@ -23,13 +23,13 @@ public class EnemyController : MonoBehaviour
         if (!_isplayer)
         {
             Patrol();
-            //Flip(dir.x, dir.y);
         }
-        if(_isplayer)
+        if (_isplayer)
         {
             dir = (_player.transform.position - transform.position).normalized * _speed;
             transform.Translate(dir * Time.deltaTime);
         }
+        Flip(dir.x);
     }
 
     void Patrol()
@@ -48,36 +48,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    //void Flip(float x,float y)
-    //{
-    //    if(x < -1)
-    //    {
-    //        _lengeY.SetActive(false);
-    //        _lengeX.SetActive(true);
-    //        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
-    //    }
-    //    else if(x > 1)
-    //    {
-    //        _lengeY.SetActive(false);
-    //        _lengeX.SetActive(true);
-    //        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-    //    }
-    //    else if(y < -1)
-    //    {
-    //        _lengeY.SetActive(true);
-    //        _lengeX.SetActive(false);
-    //        transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y) * -1, transform.localScale.z);
-    //    }
-    //    else if (y > 1)
-    //    {
-    //        _lengeY.SetActive(true);
-    //        _lengeX.SetActive(false);
-    //        transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
-    //    }
-    //}
+    void Flip(float x)
+    {
+        if (x < -1)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
+        }
+        else if (x > 1)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             _isplayer = true;
         }
