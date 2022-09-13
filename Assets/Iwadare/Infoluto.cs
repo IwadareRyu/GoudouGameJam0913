@@ -11,6 +11,7 @@ public class Infoluto : MonoBehaviour
     float t;
     float radius = 0.1f;
     [SerializeField] float _coolTime = 3f;
+    [SerializeField] GameObject _warpMazzle;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +33,13 @@ public class Infoluto : MonoBehaviour
     {
         yield return new WaitForSeconds(_coolTime);
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            _warpMazzle = GameObject.FindGameObjectWithTag("Warp");
+            collision.transform.position = _warpMazzle.transform.position;
+        }
     }
 }

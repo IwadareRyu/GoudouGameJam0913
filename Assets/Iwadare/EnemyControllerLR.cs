@@ -9,27 +9,32 @@ public class EnemyControllerLR : MonoBehaviour
     [SerializeField] float _stopDis = 0.05f;
     int _targetIndex = 0;
     [SerializeField] Vector3 dir;
-    bool _isplayer;
-    private GameObject _player;
+    GameObject _warpMazzle;
+    bool _change;
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_isplayer)
+        if (!_change)
         {
             Patrol();
+            Flip(dir.x);
         }
-        if (_isplayer)
+        else
         {
-            dir = (_player.transform.position - transform.position).normalized * _speed;
-            transform.Translate(dir * Time.deltaTime);
+            StartCoroutine(ChangeTime());
         }
-        Flip(dir.x);
+    }
+
+    IEnumerator ChangeTime()
+    {
+        yield return new WaitForSeconds(3f);
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
     }
 
     void Patrol()
@@ -63,14 +68,8 @@ public class EnemyControllerLR : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            _isplayer = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            _isplayer = false;
+            _warpMazzle = GameObject.FindGameObjectWithTag("Warp");
+            collision.transform.position = _warpMazzle.transform.position;
         }
     }
 }
