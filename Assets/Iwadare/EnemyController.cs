@@ -11,17 +11,28 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Vector3 dir;
     [SerializeField] GameObject _lengeX;
     [SerializeField] GameObject _lengeY;
+    [SerializeField] GameObject _lengeXY;
+    bool _isplayer;
+    private GameObject _player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Patrol();
-        Flip(dir.x , dir.y);
+        if (!_isplayer)
+        {
+            Patrol();
+            Flip(dir.x, dir.y);
+        }
+        if(_isplayer)
+        {
+            dir = (_player.transform.position - transform.position).normalized * _speed;
+            transform.Translate(dir * Time.deltaTime);
+        }
     }
 
     void Patrol()
@@ -65,6 +76,22 @@ public class EnemyController : MonoBehaviour
             _lengeY.SetActive(true);
             _lengeX.SetActive(false);
             transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            _lengeXY.SetActive(true);
+            _isplayer = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            _lengeXY.SetActive(false);
+            _isplayer = false;
         }
     }
 }
