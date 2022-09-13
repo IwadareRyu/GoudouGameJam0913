@@ -10,7 +10,8 @@ public class EnemyControllerLR : MonoBehaviour
     int _targetIndex = 0;
     [SerializeField] Vector3 dir;
     GameObject _warpMazzle;
-    bool _change;
+    [SerializeField]bool _change;
+    bool _changeTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +28,19 @@ public class EnemyControllerLR : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ChangeTime());
+            if (!_changeTime)
+            {
+                StartCoroutine(ChangeTime());
+                _changeTime = true;
+            }
         }
     }
 
     IEnumerator ChangeTime()
     {
         yield return new WaitForSeconds(3f);
-        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        _changeTime = false;
     }
 
     void Patrol()

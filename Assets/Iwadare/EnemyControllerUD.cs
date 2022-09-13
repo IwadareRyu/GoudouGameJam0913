@@ -10,6 +10,8 @@ public class EnemyControllerUD : MonoBehaviour
     int _targetIndex = 0;
     [SerializeField] Vector3 dir;
     GameObject _warpMazzle;
+    [SerializeField] bool _change;
+    bool _changeTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,25 @@ public class EnemyControllerUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Patrol();
-        Flip(dir.y);
+        if (!_change)
+        {
+            Patrol();
+            Flip(dir.x);
+        }
+        else
+        {
+            if (!_changeTime)
+            {
+                StartCoroutine(ChangeTime());
+                _changeTime = true;
+            }
+        }
+    }
+    IEnumerator ChangeTime()
+    {
+        yield return new WaitForSeconds(3f);
+        transform.localScale = new Vector3(transform.localScale.x, -1 * transform.localScale.y, transform.localScale.z);
+        _changeTime = false;
     }
 
     void Patrol()
