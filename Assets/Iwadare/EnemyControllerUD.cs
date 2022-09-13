@@ -23,7 +23,7 @@ public class EnemyControllerUD : MonoBehaviour
         if (!_change)
         {
             Patrol();
-            Flip(dir.x);
+            Flip(dir.y);
         }
         else
         {
