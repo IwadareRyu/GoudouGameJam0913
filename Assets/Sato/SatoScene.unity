@@ -416,6 +416,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedMag: 1
+  _dashMag: 3
+  _afterEffects:
+  - {fileID: 1012616576719894471, guid: 32f97fff84fd3d341a171479bca1ff95, type: 3}
+  - {fileID: 1012616576719894471, guid: ef43d8fd143617944b97f06225e4e3c4, type: 3}
+  - {fileID: 1012616576719894471, guid: 832e4651a1312474ea27465e0ec60cf7, type: 3}
+  - {fileID: 1012616576719894471, guid: 598ffccf528449d4183a5eb3dcc6cfae, type: 3}
 --- !u!50 &1346788682
 Rigidbody2D:
   serializedVersion: 4
