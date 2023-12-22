@@ -11,8 +11,10 @@ public class PlaySceneManager : MonoBehaviour
     [SerializeField] int _maxKeyCount;
     /// <summary>Œ»İ‚ÌŒ®‚ÌŒÂ”</summary>
     int CurrentKeyCount { get; set; }
+    public int _countCey => CurrentKeyCount;
 
-    void Awake()
+
+void Awake()
     {
         CurrentKeyCount = 0;
     }
@@ -25,5 +27,9 @@ public class PlaySceneManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public void CeyCount()
+    {
+        CurrentKeyCount++;
     }
 }

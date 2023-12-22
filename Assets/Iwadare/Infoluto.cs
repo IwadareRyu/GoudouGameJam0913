@@ -11,7 +11,7 @@ public class Infoluto : MonoBehaviour
     float t;
     float radius = 0.1f;
     [SerializeField] float _coolTime = 3f;
-    [SerializeField] GameObject _warpMazzle;
+    GameObject _warpMazzle;
     // Start is called before the first frame update
     void Start()
     {

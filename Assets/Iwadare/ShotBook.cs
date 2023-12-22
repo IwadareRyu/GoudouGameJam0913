@@ -6,9 +6,9 @@ public class ShotBook : MonoBehaviour
 {
     private GameObject _player;
     Vector3 _dir;
-    float _speed = 10f;
+    [SerializeField]float _speed = 10f;
     Rigidbody2D _rb;
-    [SerializeField] GameObject _warpMazzle;
+    GameObject _warpMazzle;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class ShotBook : MonoBehaviour
     
     IEnumerator BreakTime()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
