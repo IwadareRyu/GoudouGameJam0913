@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Hikanyan/HikaruScene.unity
+    guid: c8430d068a87b5b4799f515fd83a3a08
+  - enabled: 1
+    path: Assets/Kobayashi/KobayashiScene2.unity
+    guid: d8b85de75151e54428abe269e64acce2
+  - enabled: 1
+    path: Assets/Scenes/Result.unity
+    guid: 15ea7d61dda95f44d9e8ab67aedac6b7
   m_configObjects: {}

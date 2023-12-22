@@ -203,6 +203,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852061939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4615185823130086780, guid: c730cc96c347387409756158b6a1e148, type: 3}
+  m_PrefabInstance: {fileID: 4615185823730598460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ba43edbf17e4e44aa6737eb302a4a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1303497585
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -439,8 +451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentTransform: {fileID: 1651495462}
-  _moveY: 7.79
-  _time: 5.19
 --- !u!1 &2032289041
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +587,34 @@ PrefabInstance:
     - target: {fileID: 3560314630042501580, guid: c730cc96c347387409756158b6a1e148, type: 3}
       propertyPath: _moveY
       value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615185823130086657, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615185823130086657, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 852061939}
+    - target: {fileID: 4615185823130086657, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadNextScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615185823130086657, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneChange, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615185823130086657, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: KobayashiScene2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615185823130086657, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615185823130086780, guid: c730cc96c347387409756158b6a1e148, type: 3}
+      propertyPath: _sceneName
+      value: KobayashiScene2
       objectReference: {fileID: 0}
     - target: {fileID: 4615185823990563396, guid: c730cc96c347387409756158b6a1e148, type: 3}
       propertyPath: m_Pivot.x
